@@ -1,4 +1,3 @@
-import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 class ReactDOM {
@@ -8,9 +7,11 @@ class ReactDOM {
 }
 
 class React {
-  static createElement(type,
+  static createElement(
+    type,
     props = {},
-    ...children) {
+    ...children
+  ) {
     return {
       props: {
         ...props,
