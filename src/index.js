@@ -1,6 +1,11 @@
 class ReactDOM {
   static render(component, element) {
+    const {children, className} = component.props;
+
     const newElement = document.createElement(component.type);
+    newElement.innerText = children;
+    newElement.className = className;
+
     // will update to not use Node.appendChild()
     element.appendChild(newElement);
   }
