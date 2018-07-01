@@ -1,3 +1,5 @@
+import '../src/index.css'
+
 class ReactDOM {
   static render(component, element) {
     const {children, className} = component.props;
