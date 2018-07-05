@@ -1,6 +1,13 @@
-.hello {
-  color: teal;
+body {
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 3em;
   text-align: center;
+}
+
+.hello {
+  color: teal;
+}
+
+.child {
+  color: purple;
 }

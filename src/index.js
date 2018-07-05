@@ -5,8 +5,17 @@ class ReactDOM {
     const {children, className} = component.props;
 
     const newElement = document.createElement(component.type);
-    newElement.innerText = children;
-    newElement.className = className;
+
+    if (typeof children === 'string') {
+      newElement.innerText = children;
+      newElement.className = className;
+    } else {
+      const childElement = document.createElement(children.type);
+      const newChildProps = children.props;
+      childElement.innerText = newChildProps.children;
+      childElement.className = newChildProps.className;
+      newElement.appendChild(childElement);
+    }
 
     // will update to not use Node.appendChild()
     element.appendChild(newElement);
@@ -30,4 +39,8 @@ class React {
 }
 
 // babel parses the code and calls createElement with the 1st arg <div>
-ReactDOM.render(<div className="hello">Hello World</div>, document.getElementById('root'));
+// single element
+// ReactDOM.render(<div className="hello">Hello World</div>, document.getElementById('root'));
+
+// element with one child
+ReactDOM.render(<div className="hello"><span className='child'>Hi kids</span></div>, document.getElementById('root'));
