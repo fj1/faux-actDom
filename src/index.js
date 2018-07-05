@@ -1,19 +1,23 @@
 import '../src/index.css'
 
 class ReactDOM {
+  static prepareElement(element, props) {
+    const {children, className} = props;
+    element.innerText = children;
+    element.className = className;
+  }
+
   static render(component, element) {
-    const {children, className} = component.props;
-
+    const {children} = component.props;
+    
     const newElement = document.createElement(component.type);
-
+    
     if (typeof children === 'string') {
-      newElement.innerText = children;
-      newElement.className = className;
+      this.prepareElement(newElement, component.props);
     } else {
       const childElement = document.createElement(children.type);
       const newChildProps = children.props;
-      childElement.innerText = newChildProps.children;
-      childElement.className = newChildProps.className;
+      this.prepareElement(childElement, newChildProps);
       newElement.appendChild(childElement);
     }
 
