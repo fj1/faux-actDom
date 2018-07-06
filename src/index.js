@@ -15,10 +15,8 @@ class ReactDOM {
     if (typeof children === 'string') {
       this.prepareElement(newElement, component.props);
     } else {
-      const childElement = document.createElement(children.type);
-      const newChildProps = children.props;
-      this.prepareElement(childElement, newChildProps);
-      newElement.appendChild(childElement);
+      // recursively render child elements
+      ReactDOM.render(children, newElement);
     }
 
     // will update to not use Node.appendChild()
@@ -47,4 +45,16 @@ class React {
 // ReactDOM.render(<div className="hello">Hello World</div>, document.getElementById('root'));
 
 // element with one child
-ReactDOM.render(<div className="hello"><span className='child'>Hi kids</span></div>, document.getElementById('root'));
+// ReactDOM.render(<div className="hello"><span className='child'>Hi kids</span></div>, document.getElementById('root'));
+
+// element will many children
+ReactDOM.render(
+  (
+    <div className="hello">
+      <div>
+        <div>hello</div>
+      </div>
+    </div>
+  ), 
+  document.getElementById('root')
+);
