@@ -47,7 +47,7 @@ class React {
 // element with one child
 // ReactDOM.render(<div className="hello"><span className='child'>Hi kids</span></div>, document.getElementById('root'));
 
-// element will many children
+// element with many children
 ReactDOM.render(
   (
     <div className="hello">
