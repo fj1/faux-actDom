@@ -1,26 +1,24 @@
 import '../src/index.css'
 
+// todo:
+// handle classNames
+// 'component' could be a func if using a custom component - need to be able to handle
+// 'component' could be a func if using a class - need to be able to handles  
+
 class ReactDOM {
-  static prepareElement(element, props) {
-    const {children, className} = props;
-    element.innerText = children;
-    element.className = className;
-  }
-
   static render(component, element) {
-    const {children} = component.props;
-    
-    const newElement = document.createElement(component.type);
-    
-    if (typeof children === 'string') {
-      this.prepareElement(newElement, component.props);
-    } else {
-      // recursively render child elements
-      ReactDOM.render(children, newElement);
-    }
+    if (typeof component === 'string') {
+      element.innerText = component;
 
-    // will update to not use Node.appendChild()
-    element.appendChild(newElement);
+    } else {
+      const newElement = document.createElement(component.type);
+      const {children} = component.props;
+      // recursively render child elements
+      for (const child of children) {
+        ReactDOM.render(child, newElement);
+      }
+      element.appendChild(newElement);
+    }
   }
 }
 
@@ -28,7 +26,7 @@ class React {
   static createElement(
     type,
     props = {},
-    children
+    ...children
   ) {
     return {
       props: {
@@ -54,6 +52,7 @@ ReactDOM.render(
       <div>
         <div>hello</div>
       </div>
+      <div>world</div>
     </div>
   ), 
   document.getElementById('root')
