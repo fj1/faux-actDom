@@ -1,9 +1,8 @@
 import '../src/index.css'
 
 // todo:
-// handle classNames
 // 'component' could be a func if using a custom component - need to be able to handle
-// 'component' could be a func if using a class - need to be able to handles  
+// 'component' could be a func if using a class - need to be able to handle  
 
 class ReactDOM {
   static render(component, element) {
