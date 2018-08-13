@@ -12,7 +12,8 @@ class ReactDOM {
 
     } else {
       const newElement = document.createElement(component.type);
-      const {children} = component.props;
+      const {children, className} = component.props;
+      newElement.className = className ? className : '';
       // recursively render child elements
       for (const child of children) {
         ReactDOM.render(child, newElement);
@@ -50,7 +51,7 @@ ReactDOM.render(
   (
     <div className="hello">
       <div>
-        <div>hello</div>
+        <div className='grandchild'>hello</div>
       </div>
       <div>world</div>
     </div>

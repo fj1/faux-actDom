@@ -11,3 +11,8 @@ body {
 .child {
   color: purple;
 }
+
+.grandchild {
+  color: palevioletred;
+  font-weight: bold;
+}
