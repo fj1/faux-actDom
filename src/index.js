@@ -1,10 +1,14 @@
 import '../src/index.css'
 
 // todo:
+// 8/14 added start to render several components deep
 // 'component' could be a func if using a custom component - need to be able to handle
+//      add classes to custom component
+// add a custom component that returns another custom component
+// incorporate storybook? then have a story for each type
 // 'component' could be a func if using a class - need to be able to handle  
 
-const CustomComponent = () => <div>yo yo yo</div>;
+const CustomComponent = () => <div class='hello'>yo yo yo</div>;
 
 class ReactDOM {
   static render(component, element) {
@@ -18,21 +22,20 @@ class ReactDOM {
       // handle custom component
       if (typeof component.type === 'function') {
         const newComponent = component.type();
-        newElement = document.createElement(newComponent.type);
         children = newComponent.props.children;
+        ReactDOM.render(newComponent, element);
       } 
       // handle html element
       else {
         newElement = document.createElement(component.type);
-        children = component.props;
-        className = component.props;
+        children = component.props.children;
+        className = component.props.className;
         newElement.className = className ? className : '';
+        for (const child of children) {
+          ReactDOM.render(child, newElement);
+        }
+        element.appendChild(newElement);
       }
-      // recursively render child elements
-      for (const child of children) {
-        ReactDOM.render(child, newElement);
-      }
-      element.appendChild(newElement);
     }
   }
 }
