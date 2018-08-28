@@ -1,5 +1,3 @@
-import '../src/index.css'
-
 // todo:
 // 8/14 added start to render several components deep
 // 'component' could be a func if using a custom component - need to be able to handle
@@ -7,8 +5,6 @@ import '../src/index.css'
 // add a custom component that returns another custom component
 // incorporate storybook? then have a story for each type
 // 'component' could be a func if using a class - need to be able to handle  
-
-const CustomComponent = () => <div class='hello'>yo yo yo</div>;
 
 class ReactDOM {
   static render(component, element) {
@@ -55,26 +51,3 @@ class React {
     }
   }
 }
-
-// babel parses the code and calls createElement with the 1st arg <div>
-// single element
-// ReactDOM.render(<div className="hello">Hello World</div>, document.getElementById('root'));
-
-// element with one child
-// ReactDOM.render(<div className="hello"><span className='child'>Hi kids</span></div>, document.getElementById('root'));
-
-// element with many children
-// ReactDOM.render(
-//   (
-//     <div className="hello">
-//       <div>
-//         <div className='grandchild'>hello</div>
-//       </div>
-//       <div>world</div>
-//     </div>
-//   ), 
-//   document.getElementById('root')
-// );
-
-// custom component
-ReactDOM.render(<CustomComponent />, document.getElementById('root'));
