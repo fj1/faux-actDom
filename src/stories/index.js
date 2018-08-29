@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react';
 import '../../src/index.css'
 
 const CustomComponent = () => <div className='hello'>yo yo yo</div>;
+
 const ParentComponent = () => {
   return (
     <div>
@@ -11,6 +12,39 @@ const ParentComponent = () => {
       <CustomComponent />
     </div>
   )};
+
+const DeepSpaceNine = () => {
+  return (
+    <div>
+      1
+      <div>
+        2
+        <div>
+          3
+          <div>
+            4
+            <div>
+              5
+              <div>
+                6
+                <div>
+                  7
+                  <div>
+                    8
+                    <div>
+                      9
+                      <CustomComponent />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 storiesOf('HTML elements', module)
   // babel parses the code and calls createElement with the 1st arg <div>
@@ -28,4 +62,6 @@ storiesOf('HTML elements', module)
 
   .add('custom component', () => <CustomComponent />, document.getElementById('root'))
   
-  .add('custom component with child custom component', () => <ParentComponent />, document.getElementById('root'));
+  .add('custom component with child custom component', () => <ParentComponent />, document.getElementById('root'))
+  
+  .add('custom component several levels deep', () => <DeepSpaceNine />, document.getElementById('root'));

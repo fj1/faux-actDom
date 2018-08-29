@@ -1,7 +1,4 @@
 // todo:
-// 8/14 added start to render several components deep
-// 'component' could be a func if using a custom component - need to be able to handle
-//      add classes to custom component
 // 'component' could be a func if using a class - need to be able to handle  
 
 class ReactDOM {
