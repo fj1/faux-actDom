@@ -3,7 +3,14 @@ import { storiesOf } from '@storybook/react';
 
 import '../../src/index.css'
 
-const CustomComponent = () => <div class='hello'>yo yo yo</div>;
+const CustomComponent = () => <div className='hello'>yo yo yo</div>;
+const ParentComponent = () => {
+  return (
+    <div>
+      Parent
+      <CustomComponent />
+    </div>
+  )};
 
 storiesOf('HTML elements', module)
   // babel parses the code and calls createElement with the 1st arg <div>
@@ -19,4 +26,6 @@ storiesOf('HTML elements', module)
     </div>,
     document.getElementById('root'))
 
-  .add('custom component', () => <CustomComponent />, document.getElementById('root'));
+  .add('custom component', () => <CustomComponent />, document.getElementById('root'))
+  
+  .add('custom component with child custom component', () => <ParentComponent />, document.getElementById('root'));

@@ -2,8 +2,6 @@
 // 8/14 added start to render several components deep
 // 'component' could be a func if using a custom component - need to be able to handle
 //      add classes to custom component
-// add a custom component that returns another custom component
-// incorporate storybook? then have a story for each type
 // 'component' could be a func if using a class - need to be able to handle  
 
 class ReactDOM {
