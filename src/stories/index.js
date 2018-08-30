@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { storiesOf } from '@storybook/react';
 
 import '../../src/index.css'
@@ -46,6 +46,18 @@ const DeepSpaceNine = () => {
   )
 }
 
+class ClassyComponent extends Component {
+  render() {
+    return (
+      <div className='parent'>
+        I'm so&nbsp;
+        <div className='classy'>classy</div>
+        <DeepSpaceNine />
+      </div>
+    )
+  }
+}
+
 storiesOf('HTML elements', module)
   // babel parses the code and calls createElement with the 1st arg <div>
   .add('single html element', () => <div className="hello">Hello World</div>, document.getElementById('root'))
@@ -64,4 +76,6 @@ storiesOf('HTML elements', module)
   
   .add('custom component with child custom component', () => <ParentComponent />, document.getElementById('root'))
   
-  .add('custom component several levels deep', () => <DeepSpaceNine />, document.getElementById('root'));
+  .add('custom component several levels deep', () => <DeepSpaceNine />, document.getElementById('root'))
+  
+  .add('custom class component', () => <ClassyComponent />);

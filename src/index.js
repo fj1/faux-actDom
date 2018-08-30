@@ -1,6 +1,3 @@
-// todo:
-// 'component' could be a func if using a class - need to be able to handle  
-
 class ReactDOM {
   static render(component, element) {
     if (typeof component === 'string') {
