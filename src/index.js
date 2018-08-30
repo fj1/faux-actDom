@@ -1,4 +1,14 @@
-class ReactDOM {
+/*
+ * todo: 
+ * - handle logic to render ClassyComponent
+ * - handle state, ie maybe with text input
+ */
+
+export class Component {
+  static __IS_COMPONENT__ = true;
+};
+
+export class ReactDOM {
   static render(component, element) {
     if (typeof component === 'string') {
       element.innerText = component;
@@ -9,6 +19,9 @@ class ReactDOM {
       let className;
       // handle custom component
       if (typeof component.type === 'function') {
+        if (component.type instanceof Component) {
+          debugger; /* eslint no-debugger: 0 */
+        }
         const newComponent = component.type();
         children = newComponent.props.children;
         ReactDOM.render(newComponent, element);
@@ -28,7 +41,7 @@ class ReactDOM {
   }
 }
 
-class React {
+export default class React {
   static createElement(
     type,
     props = {},

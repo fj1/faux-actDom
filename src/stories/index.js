@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
 import { storiesOf } from '@storybook/react';
 
+import React, {ReactDOM, Component} from '../index';
 import '../../src/index.css'
 
 const CustomComponent = () => <div className='hello'>yo yo yo</div>;
@@ -58,24 +58,34 @@ class ClassyComponent extends Component {
   }
 }
 
+const addFauxDoc = item => {
+  // hack: storybook is rendering the empty string that is being returned,
+  //   and is overwriting our element
+  // setTimeout is using our custom ReactDOM to render to let Storybook do its thing
+  //   and then render what we want
+  setTimeout(() => {
+    ReactDOM.render(item, document.getElementById('root'));
+  }, 0);
+  return " ";
+}
+
 storiesOf('HTML elements', module)
   // babel parses the code and calls createElement with the 1st arg <div>
-  .add('single html element', () => <div className="hello">Hello World</div>, document.getElementById('root'))
+  .add('single html element', () => addFauxDoc(<div className="hello">Hello World</div>))
 
-  .add('html element with one child', () => <div className="hello"><span className='child'>Hi kids</span></div>, document.getElementById('root'))
+  .add('html element with one child', () => addFauxDoc(<div className="hello"><span className='child'>Hi kids</span></div>))
 
-  .add('html element with many children', () => <div className="hello">
+  .add('html element with many children', () => addFauxDoc(<div className="hello">
     <div>
       <div className='grandchild'>hello</div>
     </div>
       <div>world</div>
-    </div>,
-    document.getElementById('root'))
+    </div>))
 
-  .add('custom component', () => <CustomComponent />, document.getElementById('root'))
-  
-  .add('custom component with child custom component', () => <ParentComponent />, document.getElementById('root'))
-  
-  .add('custom component several levels deep', () => <DeepSpaceNine />, document.getElementById('root'))
-  
-  .add('custom class component', () => <ClassyComponent />);
+  .add('custom component', () => addFauxDoc(<CustomComponent />))
+    
+  .add('custom component with child custom component', () => addFauxDoc(<ParentComponent />))
+    
+  .add('custom component several levels deep', () => addFauxDoc(<DeepSpaceNine />))
+    
+  .add('custom class component', () => addFauxDoc(<ClassyComponent />));
