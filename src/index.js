@@ -19,7 +19,7 @@ export class ReactDOM {
       let className;
       // handle custom component
       if (typeof component.type === 'function') {
-        if (component.type instanceof Component) {
+        if (component.type.__IS_COMPONENT__) {
           debugger; /* eslint no-debugger: 0 */
         }
         const newComponent = component.type();
